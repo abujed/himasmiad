@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# this script is called by dm.agent.classify.naivebayes.01.py
+# it ingests an arff and the spits out a output file
+# -l is the model we're testing against (could be variablized)
+# -p 8 is the attribute we're trying to predict.  (could also be variablized) 
+# -T $1 is the path/to/name.arff of the test arff
+
+NOW=$(date "+%Y%m%d%H%M")
+
+java -mx1024m -cp /usr/share/java/weka.jar weka.classifiers.bayes.NaiveBayes -l ./models/naivebayes.no.scanning.model -p 8 -T ../../preprocessing/classify/output/$1 > ./output/$1.naivebayes.$NOW.out

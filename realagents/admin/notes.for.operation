@@ -1,0 +1,96 @@
+Running the himasmiad
+
+System requirements: (our specs)
+Linux host (Ubuntu 14.04)
+Java (1.7) and Python (2.7.6)
+Spade platform (2.2.1)
+Weka (3.6.10)
+Tshark (1.10.6)
+pdml2arff.py (1.0)
+tcptrace (6.6.7)
+csvtool (copyright 2005-2006)
+(let me know if I missed something so I can update this)
+
+In the admin directory:
+	Run the "spade" script which fires up the Spade platform.
+	"kp" will kill all the agents which don't shut themselves down, when you're done.
+	"cod" will clean out the output directories
+	"mvop" moves files in the output directories to wherever you are.
+
+Fire up the agents in this order: datamining first, then preprocessing, then the kickoff agent
+
+Datamining agents
+	Clustering agents:
+1.		dmclu01.py - cobweb
+2.		dmclu02.py - SimpleKMeans
+
+	Classifying agents:
+3.		dmcla01.py - J4801 
+4.		dmcla02.py - J4802
+5.		dmcla03.py - NaiveBayes
+
+	Associator agent:
+6.		dmass01.py - Apriori
+
+Preprocessing agents
+7.	prclu01k.py - preprocesses for dmclu*
+8.	prcla01k.py - preprocesses for dmcla*
+9.	prass01k.py - preprocesses for dmass*
+
+Kickoff agent
+10.	prall01k.py - reads box directory and alerts pr* agents
+
+
+Below is the tree output for the agents.
+├── admin
+│   ├── kp
+│   └── spade
+├── datamining
+│   ├── associate
+│   │   ├── dmass01.py
+│   │   ├── dm.associate.apriori.01.script.sh
+│   │   └── output
+│   ├── classify
+│   │   ├── dmcla01.py
+│   │   ├── dmcla02.py
+│   │   ├── dmcla03.py
+│   │   ├── dm.classify.j48.01.script.sh
+│   │   ├── dm.classify.j48.02.script.sh
+│   │   ├── dm.classify.naivebayes.01.script.sh
+│   │   ├── models
+│   │   │   ├── j48.markey.traffic.analysis.model
+│   │   │   ├── j48.markey.traffic.analysis.model2.model
+│   │   │   └── naivebayes.no.scanning.model
+│   │   └── output
+│   └── cluster
+│       ├── dmclu01.py
+│       ├── dmclu02.py
+│       ├── dm.cluster.cobweb.01.script.sh
+│       ├── dm.cluster.SimpleKMeans.01.script.sh
+│       └── output
+├── dropoff
+│   ├── archive
+│   ├── box
+│   │   ├── example.com-5.pcap
+│   │   ├── newfile
+│   │   └── zeus-sample-2.pcap
+│   └── prall01k.py
+└── preprocessing
+    ├── associate
+    │   ├── output
+    │   ├── prass01k.py
+    │   ├── preprocess.associate.01a.copy2local.script.sh
+    │   ├── preprocess.associate.01.pcap2arff.script.sh
+    │   └── preprocess.associate.02.apriori.prep.script.sh
+    ├── classify
+    │   ├── output
+    │   ├── prcla01k.py
+    │   ├── preprocess.classify.01a.copy2local.script.sh
+    │   └── preprocess.classify.01.markey.pcapmod.oneoff.script.sh
+    └── cluster
+        ├── output
+        ├── prclu01k.py
+        ├── preprocess.cluster.01a.copy2local.script.sh
+        ├── preprocess.cluster.02.prep.script.sh
+        └── preprocess.cluster.03.stripq.py
+

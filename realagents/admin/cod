@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#cod - clean output dirs
+
+rm ~/himasmiad/fakeagents/preprocessing/associate/output/*
+rm ~/himasmiad/fakeagents/datamining/associate/output/*
+rm ~/himasmiad/realagents/preprocessing/associate/output/*
+rm ~/himasmiad/realagents/datamining/associate/output/*
+
+rm ~/himasmiad/fakeagents/preprocessing/classify/output/*
+rm ~/himasmiad/fakeagents/datamining/classify/output/*
+rm ~/himasmiad/realagents/preprocessing/classify/output/*
+rm ~/himasmiad/realagents/datamining/classify/output/*
+
+rm ~/himasmiad/fakeagents/preprocessing/cluster/output/*
+rm ~/himasmiad/fakeagents/datamining/cluster/output/*
+rm ~/himasmiad/realagents/preprocessing/cluster/output/*
+rm ~/himasmiad/realagents/datamining/cluster/output/*
+
+ 
+

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# kills all my non dying python agents from spade 
+# until I figure out how to make them stop when they're done
+
+# remove the old file (doing it here leaves it in place if you have to figure out what you killed)
+cd ~/scripts/
+rm spadeagents.pids
+rm spadeagents.pidfull
+
+ps -eaf | grep python | grep -v spade | grep -v color | grep -v gre > spadeagents.pidfull
+ps -eaf | grep python | grep -v spade | grep -v color | grep -v gre | awk '{print $2 }' > spadeagents.pids
+
+for i in `cat spadeagents.pids`
+	do
+		`kill -9 $i`
+	done
+
+
